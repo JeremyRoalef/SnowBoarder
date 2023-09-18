@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CrashDetector : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class CrashDetector : MonoBehaviour
     {
         if (other.tag == "Crash")
         {
-            Debug.Log("you bonked your head");
+            SceneManager.LoadScene(0); //loads scene with index 0 in build settings.
         }
     }
 }
