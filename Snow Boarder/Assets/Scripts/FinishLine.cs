@@ -14,6 +14,7 @@ public class FinishLine : MonoBehaviour
        if (other.tag == "Player")
         {
             finishEffect.Play(); //play particle effects
+            GetComponent<AudioSource>().Play();
             Invoke("ReloadScene", fltReloadDelay);
         }
 
