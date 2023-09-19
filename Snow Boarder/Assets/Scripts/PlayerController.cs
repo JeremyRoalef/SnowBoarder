@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     SurfaceEffector2D surfaceEffector2D;
     [SerializeField] float fltBaseSpeed = 12.5f;
     [SerializeField] float fltBoostSpeed = 20f;
-
+    bool boolCanMove = true;
 
     void Start()
     {
@@ -20,9 +20,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        RotatePlayer();
+        if (boolCanMove)
+        {
+            RotatePlayer();
 
-        RespondToBoost();
+            RespondToBoost();
+        }
     }
 
     void RotatePlayer()
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
             rb2d.AddTorque(-fltTorqueAmount);
         }
     }
+
     void RespondToBoost()
     {
         //if we push up, speed up. else, stay at normal speed
@@ -47,5 +51,10 @@ public class PlayerController : MonoBehaviour
         {
             surfaceEffector2D.speed = fltBaseSpeed;
         }
+    }
+
+    public void DisableControls()
+    {
+        boolCanMove = false;
     }
 }

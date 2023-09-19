@@ -14,6 +14,8 @@ public class CrashDetector : MonoBehaviour
     {
         if (other.tag == "Crash")
         {
+            FindObjectOfType<PlayerController>().DisableControls(); //finds the player controller script and calls the public
+                                                                    //method.
             crashEffect.Play(); //play particle effects
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
             Invoke("ReloadScene", fltReloadDelay);
