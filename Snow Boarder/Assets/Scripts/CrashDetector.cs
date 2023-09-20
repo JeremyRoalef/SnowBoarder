@@ -25,8 +25,25 @@ public class CrashDetector : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Crash") //collisions need the .gameObject part. triggers only need other.tag
+        {
+            FindObjectOfType<PlayerController>().PlayerCanJump();
+        }
+    }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Crash")
+        {
+            FindObjectOfType<PlayerController>().PlayerCanNotJump();
+        }
+    }
+    
     void ReloadScene()
     {
         SceneManager.LoadScene(0); //loads scene with index 0 in build settings.
     }
+
+
 }

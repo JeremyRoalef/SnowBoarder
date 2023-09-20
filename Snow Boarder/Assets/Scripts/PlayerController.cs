@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float fltBaseSpeed = 12.5f;
     [SerializeField] float fltBoostSpeed = 20f;
     bool boolCanMove = true;
+    [SerializeField] float fltJumpForce = 5f;
+    bool boolCanJump = false;
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
 
             RespondToBoost();
+
+            PlayerJump();
         }
     }
 
@@ -53,8 +57,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void PlayerJump()
+    {
+        //give jump force ONLY when player is on ground. 
+
+        if (Input.GetButton("Jump") && boolCanJump)
+        {
+            rb2d.AddForce(transform.up * fltJumpForce);
+        }
+    }
+
     public void DisableControls()
     {
         boolCanMove = false;
     }
+
+
+    public void PlayerCanJump()
+    {
+        boolCanJump = true;
+    }
+    public void PlayerCanNotJump()
+    {
+        boolCanJump = false;
+    }
+    
 }
