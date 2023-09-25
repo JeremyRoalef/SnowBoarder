@@ -28,8 +28,16 @@ public class PlayerController : MonoBehaviour
 
             RespondToBoost();
 
+        }
+    }
+    void LateUpdate()
+    {
+        //jumping in lateupdate stops weird jumps from happening
+        if (boolCanMove)
+        {
             PlayerJump();
         }
+
     }
 
     void RotatePlayer()
